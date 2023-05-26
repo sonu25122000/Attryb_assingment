@@ -9,6 +9,7 @@ import {
   Heading,
   useColorModeValue,
   useToast,
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -75,6 +76,7 @@ export default function Login() {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>Sign in to your account</Heading>
+          <Text>Please Login with to below credential to see added product in dealer section : <br /> Email: test@gmail.com <br /> password:test123</Text>
         </Stack>
         <Box
           rounded={"lg"}

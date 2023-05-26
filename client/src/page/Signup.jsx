@@ -26,7 +26,7 @@ export default function Signup() {
   // signup function
   const Register = async () => {
     try {
-      let r = await fetch(`http://localhost:8080/register`, {
+      let r = await fetch(`https://worried-wombat.cyclic.app/register`, {
         method: "POST",
         body: JSON.stringify(cred),
         headers: {

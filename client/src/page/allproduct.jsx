@@ -16,7 +16,7 @@ const Allproduct = () => {
   // get all product data
 
   const getAllData = async () => {
-    fetch(`http://localhost:8080/allcardata`, {
+    fetch(`https://worried-wombat.cyclic.app/allcardata`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",

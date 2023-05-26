@@ -56,10 +56,9 @@ const Dealer = () => {
     const { name, value } = e.target;
     setObj({ ...obj, [name]: value });
   };
-
   // get all the data for loggedin user
   const getAllData = async () => {
-    fetch(`http://localhost:8080/dealer/car`, {
+    fetch(`https://worried-wombat.cyclic.app/dealer/car`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -84,7 +83,7 @@ const Dealer = () => {
 
   // update product deatils
   const HandleUpadteproductDeatils = () => {
-    fetch(`http://localhost:8080/dealer/update/${ProductID}`, {
+    fetch(`https://worried-wombat.cyclic.app/dealer/update/${ProductID}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +117,7 @@ const Dealer = () => {
   // delete a particular product
   const handleDelete = async (id) => {
     try {
-      let r = await fetch(`http://localhost:8080/dealer/delete/${id}`, {
+      let r = await fetch(`https://worried-wombat.cyclic.app/dealer/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

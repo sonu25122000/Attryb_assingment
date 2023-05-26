@@ -28,7 +28,7 @@ export default function Login() {
   // login function
   const HandleLogin = async () => {
     try {
-      let r = await fetch(`http://localhost:8080/login`, {
+      let r = await fetch(`https://worried-wombat.cyclic.app/login`, {
         method: "POST",
         body: JSON.stringify(cred),
         headers: {

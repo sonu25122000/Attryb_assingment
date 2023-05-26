@@ -25,7 +25,7 @@ function ModalComp() {
   };
 
   const AddDealerProductDeatils = () => {
-    fetch(`http://localhost:8080/dealer/add`, {
+    fetch(`https://worried-wombat.cyclic.app/dealer/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

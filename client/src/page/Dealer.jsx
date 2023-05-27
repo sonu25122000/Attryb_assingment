@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React from "react";
 import {
   Box,
@@ -52,6 +53,7 @@ const Dealer = () => {
   const [Ordermilegae, setOrdermilegae] = useState("");
   const [SearchText, setSearchText] = useState("");
   const [ProductID, setProductID] = useState("");
+  const [originalproduct, setoriginalProduct] = useState([]);
   const HandleUpadateData = (e) => {
     const { name, value } = e.target;
     setObj({ ...obj, [name]: value });
@@ -68,8 +70,9 @@ const Dealer = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
         setAllProduct(res);
+        // console.log(res);
+        setoriginalProduct(res);
       })
       .catch((err) => console.log(err.message));
   };
@@ -117,13 +120,16 @@ const Dealer = () => {
   // delete a particular product
   const handleDelete = async (id) => {
     try {
-      let r = await fetch(`https://worried-wombat.cyclic.app/dealer/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("cartoken"),
-        },
-      });
+      let r = await fetch(
+        `https://worried-wombat.cyclic.app/dealer/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("cartoken"),
+          },
+        }
+      );
       let d = await r.json();
       if (d) {
         toast({
@@ -184,12 +190,24 @@ const Dealer = () => {
   // search by product name
   const handleSearch = (e) => {
     setSearchText(e.target.value);
+    HandleSearchProductByName(e.target.value);
   };
-  const HandleSearchProductByName = () => {
-    let Ans = Allproduct.filter(function (e) {
-      return e.name === SearchText;
-    });
-    setAllProduct(Ans);
+  const HandleSearchProductByName = (keyword) => {
+    if (keyword.length > 0) {
+      let Ans = originalproduct.filter(function (e) {
+        return (
+          e.name.toLowerCase().startsWith(keyword.toLowerCase()) ||
+          e.manufacturer.toLowerCase().startsWith(keyword.toLowerCase()) ||
+          e.list_price.toLowerCase().startsWith(keyword.toLowerCase()) ||
+          e.max_speed.toString().toLowerCase().startsWith(keyword.toLowerCase()) ||
+          e.available_colors[0].toString().toLowerCase().startsWith(keyword.toLowerCase()) ||
+          e.year.toString().toLowerCase().startsWith(keyword.toLowerCase())
+        );
+      });
+      setAllProduct(Ans);
+    } else {
+      setAllProduct(originalproduct);
+    }
   };
 
   return (
@@ -197,14 +215,11 @@ const Dealer = () => {
       <Flex w={"90%"} m="auto" mb={"2%"} mt={"3%"}>
         <Box>
           <InputGroup>
+            <InputLeftAddon children={<Icon as={SearchIcon} />} />
             <Input
               type="text"
               onChange={handleSearch}
               placeholder="Search Product By Name"
-            />
-            <InputLeftAddon
-              onClick={HandleSearchProductByName}
-              children={<Icon as={SearchIcon} />}
             />
           </InputGroup>
         </Box>

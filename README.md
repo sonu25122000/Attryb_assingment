@@ -1,4 +1,4 @@
-# Meesho-fascino (Clone of Meesho.com)
+# BUYC (Attryb Assingment)
 An e-commerce website for sell old car.
 
 Live: https://client-olive-iota.vercel.app/
